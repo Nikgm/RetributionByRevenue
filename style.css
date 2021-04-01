@@ -5,10 +5,21 @@ html{
     font-size: 62.5%;
 }
 
+video{
+    z-index: -100;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    pointer-events: none;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+
 body{
     padding: 0;
     margin: 0;
-    background-image: url(moving_background.gif);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
@@ -70,6 +81,15 @@ body{
 #chart{
     margin-right: 2rem;
     pointer-events:all;
+    background-image: url("https://data.whicdn.com/images/266613994/original.gif");
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    -moz-background-size:100% 100%;
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+    margin-right: 30%;
+	
+	    
 }
 
 #chart:hover {
@@ -121,7 +141,23 @@ body{
     animation: animationName 3s infinite;
 }
 
+.apexcharts-title-text{
+    -webkit-animation: animationName 3s infinite;
+    -moz-animation: animationName 3s infinite;
+    -o-animation: animationName 3s infinite;
+    animation: animationName 3s infinite;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 @media screen and (max-width: 425px) {
+	#topBanner{
+	    width: 90%;
+	    margin: 0 auto;
+	}
     #infoData{
         display: grid;
         grid-template-columns: 100%;

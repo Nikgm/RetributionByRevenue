@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:image" content="https://images.pond5.com/vitruvian-man-footage-000699568_iconl.jpeg" />
+<link rel ="image_src" href="https://images.pond5.com/vitruvian-man-footage-000699568_iconl.jpeg">
+<meta property="og:description" content="Creo quia absurdum est." />
+<meta property="og:url"content="https://images.pond5.com/vitruvian-man-footage-000699568_iconl.jpeg" />
+<meta property="og:title" content="Retribution by Revenue" />
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="pepino.png"/>
     <title>Retribution by Revenue</title>
 </head>
 <body>
+    <video controls preload="true" loop autoplay muted>
+        <source src="output.webm" type="video/webm">
+    </video>
     <div id="topBanner"><h2 id="companyName">Retribution By Revenue <span style="font-size: 50%;">LLC</span></h2></div>
     <div id="infoData">
         <div id="socialLinks">
@@ -20,10 +28,10 @@
     </div>
 
     <div id="dataDisplay">
-        <div class=elementToFadeInAndOut><h3>Current Balance: $<span id="currentBalance"></span></h3></div>
+        <div class=elementToFadeInAndOut><h3>Live Current Balance: $<span id="currentBalance"></span></h3></div>
         <div class=elementToFadeInAndOut><h3>Trend: <span id="renkoTrend"></span></h3></div>
         <div class=elementToFadeInAndOut><h3>Holdings: $<span id="renkoBrick"></span></h3></div>
-        <div class=elementToFadeInAndOut><h3>Last Timestamp: <br><span id="timestamp"></span></h3></div>
+        <div class=elementToFadeInAndOut><h3>Last Timestamp: <span id="timestamp"></span></h3></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
