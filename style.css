@@ -5,6 +5,104 @@ html{
     font-size: 62.5%;
 }
 
+
+/*LOADING SCREN*/
+#background-color{  
+    width: 100%;
+    height: 100vh;
+
+}
+#loading{
+
+    animation: rotate 2s linear infinite;
+}
+
+
+
+
+
+#loading-logo{
+    height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: pulse 1s linear infinite;
+}
+
+body {
+    background-color: teal;
+  }
+
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    50%{
+        webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    100% {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+}
+
+@-webkit-keyframes pulse {
+    0%{
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    50%{
+        -webkit-transform: scale(1.8);
+        transform: scale(1.8);
+    }
+    100%{
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes color-change {
+    12.5% {
+      background-color: rgba(255,0,0,1);
+    }
+    25% {
+      background-color: rgba(255,165,0,1)
+    }
+    37.5% {
+      background-color: rgba(255,255,0,1);
+    }
+    50% {
+      background-color: rgba(127,255,0,1);
+    }
+    62.5% {
+      background-color: rgba(0,255,255,1);
+    }
+    75% {
+      background-color: rgba(0,0,255,1);
+    }
+    87.5% {
+      background-color: rgba(153,50,204,1);
+    }
+    100% {
+      background-color: rgba(255,20,147,1);
+    }
+  }
+
+/*////////////*/
+#onload{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+
+}
+
 video{
     z-index: -100;
     position: fixed;
@@ -32,6 +130,7 @@ body{
     margin-top: 5vh;
     color: white;
     text-align: center;
+    z-index: 1;
 }
 
 #topBanner{
@@ -94,6 +193,7 @@ body{
 
 #chart:hover {
 	background-color: transparent;
+
 }
 #chart:active {
 	pointer-events: none;
@@ -107,6 +207,7 @@ body{
     font-weight: bold;
     width: 50%;
     margin: 0 auto;
+    padding-left: 5vw;
 }
 #dataDisplay h3{
     padding: 0;
@@ -150,8 +251,10 @@ body{
 
 html, body {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
+
+
 
 @media screen and (max-width: 425px) {
 	#topBanner{
@@ -204,4 +307,57 @@ html, body {
         width: 90%;
         margin: 0 auto;
     }
+}
+
+center,#jdiv{
+
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+            animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+@-webkit-keyframes fadeOut {
+    0% { opacity: 1;}
+    99% { opacity: 0.01;width: 100%; height: 100%;}
+    100% { opacity: 0;width: 0; height: 0;}
+}  
+@keyframes fadeOut {
+    0% { opacity: 1;}
+    99% { opacity: 0.01;width: 100%; height: 100%;}
+    100% { opacity: 0;width: 0; height: 0;}
+}
+
+#jdiv{
+    background-image: url("moving_background.gif");
+    position:absolute;
+    width:100%;
+    height: 100%;
+    z-index:-10;
+    background-size: cover;
 }
