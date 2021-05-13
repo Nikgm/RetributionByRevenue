@@ -1,14 +1,22 @@
+$('body').prepend('<style>  body{  animation: 0.5s ease-in-out infinite color-change; }  <style/>');  //
+$('#loading-logo').prepend('<img id="loading" src="coolpepe.png" width="280" height="220" />')  //
+$('#loading-logo').prepend('<h1>Loading</h1>') 
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+sleep(1000).then(() => { });
   // ID of the Google Spreadsheet
   var spreadsheetID = "1IneAA3Q68GV1Kl4uei-FWPFfiVSvF6xWSr2B7ks-cqg";
   //https://spreadsheets.google.com/feeds/cells/1IneAA3Q68GV1Kl4uei-FWPFfiVSvF6xWSr2B7ks-cqg/1/public/full?alt=json   
   // Make sure it is public or set to Anyone with link can view 
   var url = "https://spreadsheets.google.com/feeds/cells/" + spreadsheetID + "/1/public/full?alt=json"; //this is the part that's changed
-  var myjson
-
-
 
 jQuery.extend({
-  getValues: function(url) {
+  getValues: function() {
       var result = null;
       var temp = null
       $.ajax({
@@ -16,6 +24,7 @@ jQuery.extend({
           type: 'get',
           dataType: 'json',
           async: false,
+          cache: false,
           success: function(data) {
               result = data;
               temp = (result.feed.entry[0].content.$t)
@@ -23,15 +32,10 @@ jQuery.extend({
               $('#timestamp').html(time);
               $('#currentBalance').text((parseFloat(temp).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')));
               document.title='$'+(parseFloat(temp).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'))
-              //console.log(time)
           }
       });
-    //setTimeout($.getValues(), 29000)
     return result;
-  }
-});
-
-jQuery.extend({
+  },
   getEth: function() {
       var result = null;
       var temp = null
@@ -40,26 +44,30 @@ jQuery.extend({
           type: 'get',
           dataType: 'json',
           async: false,
+          cache: false,
           success: function(data) {
-            $(".apexcharts-title-text").text("Live ETH Price: $"+parseFloat(data.asks[0][0]).toFixed(4))
-              result = data
+            temp = "Live Eth Price: $"+(parseFloat(data.asks[0][0]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'))
+            result = data
+            //console.log(1)
+            $(".apexcharts-title-text").text(temp)
           }
       });
-    //setTimeout($.getValues, 29000)
     return result;
   }
 });
 
+
+//Non Blocking Polling
 var sleep = time => new Promise(resolve => setTimeout(resolve, time))
 var poll = (promiseFn, time) => promiseFn().then(
              sleep(time).then(() => poll(promiseFn, time)))
-poll(() => new Promise(() => $.getEth()), 1000)
+poll(() => new Promise(() => $.getEth()), 10000)
 
+//Non Blocking Polling
 var sleep = time => new Promise(resolve => setTimeout(resolve, time))
 var poll = (promiseFn, time) => promiseFn().then(
              sleep(time).then(() => poll(promiseFn, time)))
-poll(() => new Promise(() => $.getValues()), 1000)
-
+poll(() => new Promise(() => $.getValues()), 10000)
 
 window.values = null
 
@@ -73,7 +81,7 @@ function applyDom(){
               s.push(currentValue.content.$t)
   }
   let netWorthArray = []
-  for(let i=4 ; i<=values.length-1;i++){
+  for(let i=5 ; i<=values.length-1;i++){
     let currentValue=values[i]
     netWorthArray.push(currentValue.content.$t)
   }
@@ -147,7 +155,7 @@ markers: {
   }
 },
 title: {
-  text: $.getEth().asks[0][0],
+  text: "Live Eth Price: $"+parseFloat($.getEth().asks[0][0]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'),
   align: 'left',
   margin: 10,
   offsetX: 90,
@@ -206,4 +214,43 @@ yaxis:[
 };
 
 var chart = new ApexCharts(document.querySelector("#chart"), options);
+//$("body").css("background-image", "url(" + imageUrl + ")");
+
+
+test = `
+<style> 
+center{
+display: block;
+  -webkit-animation: fadeOut 1s;
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+  <style/>
+
+`
+
+$('body').prepend(test);
+
+//$('#background-color').css("visibility","hidden");
+
+function loaded() {
+  $('body').prepend($('<div>').attr('id', 'jdiv')/*.attr('src', 'moving_background.gif')*/)
+$('body').css('animation','none');
 chart.render();
+$("#loading-logo").remove();
+$('#onload').removeAttr("style");
+}
+
+sleep(1000).then(() => { loaded(); });
+//$('#hide').css("visibility","visible");
+
+
+///////
+for (let i = 0; i < 6; i++){
+  console.log('loaded')
+  $('#count').append('<li></li>');//Add tally
+}
+
+
+
+ // $("ol").empty();//Reset tally

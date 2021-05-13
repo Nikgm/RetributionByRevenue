@@ -13,11 +13,14 @@
     <link rel="icon" type="image/png" href="pepino.png"/>
     <title>Retribution by Revenue</title>
 </head>
+
 <body>
-    <video controls preload="true" loop autoplay muted>
-        <source src="output.webm" type="video/webm">
-    </video>
-    <div id="topBanner"><h2 id="companyName">Retribution By Revenue <span style="font-size: 50%;">LLC</span></h2></div>
+
+    <center class="end"><div id="loading-logo"><br></div></center>
+
+    <div id="onload" style="display: none;">
+
+    <div id="topBanner" style="z-index: 1; overflow-block:unset;"><h2 id="companyName">Retribution By Revenue <span style="font-size: 50%;">LLC</span></h2></div>
     <div id="infoData">
         <div id="socialLinks">
             <img class="instaPic" src="insta_icon.png" alt="">
@@ -32,6 +35,8 @@
         <div class=elementToFadeInAndOut><h3>Trend: <span id="renkoTrend"></span></h3></div>
         <div class=elementToFadeInAndOut><h3>Holdings: $<span id="renkoBrick"></span></h3></div>
         <div class=elementToFadeInAndOut><h3>Last Timestamp: <span id="timestamp"></span></h3></div>
+        <div class=elementToFadeInAndOut><h3>Renko Tally: <ol id="count">&nbsp;</ol></div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
